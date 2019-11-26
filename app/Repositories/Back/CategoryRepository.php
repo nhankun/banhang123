@@ -84,7 +84,15 @@ class CategoryRepository
     public function delete($category_id)
     {
         $category = Category::findOrFail($category_id);
+        $property_defaults = PropertyDefault::where('category_id',$category->id)->get('id');
+        PropertyDefault::destroy($property_defaults->toArray());
         return $category->delete();
+    }
+
+    public function deletePropertyDefault($id)
+    {
+        $property_default = PropertyDefault::findOrFail($id);
+        return $property_default->delete();
     }
 
     public function approved($category_id)

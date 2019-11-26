@@ -23,18 +23,18 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $id = isset($this->categories) ? ','.$this->categories : '';
+        $id = isset($this->category) ? ','.$this->category : '';
         return [
             'name' => 'required|max:255|unique:categories,name'.$id,
-//            'fileImage' => 'required|mimetypes:fileImage/jpeg,fileImage/png,fileImage/jpg|max:5000',
+            'fileImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
     public function messages()
     {
         return [
-            'fileImage.image'  => 'The files must be a file image',
-            'fileImage.mimetypes' => 'The files must be a file of type: jpeg,png,jpg.',
+//            'fileImage.image'  => 'The files must be a file image',
+//            'fileImage.mimes' => 'The files must be a file of type: jpeg,png,jpg.',
         ];
     }
 }

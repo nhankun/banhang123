@@ -125,6 +125,16 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    public function deletePropertyDefault(Request $request)
+    {
+        $result = $this->repository->deletePropertyDefault($request->id);
+        if ($request->ajax())
+        {
+            return response()->json(['result'=>$result],200);
+        }
+        return redirect()->route('categories.index');
+    }
+
     public function approved(Request $request)
     {
         $category_id = $request->id;

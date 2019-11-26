@@ -37,6 +37,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/search', 'CategoryController@search')->name('categories.search');
             Route::post('/approved', 'CategoryController@approved')->name('categories.approved');
             Route::post('/cancel', 'CategoryController@cancel')->name('categories.cancel');
+            Route::post('/delete-property-default', 'CategoryController@deletePropertyDefault')->name('categories.deletePropertyDefault');
 
         });
     });
