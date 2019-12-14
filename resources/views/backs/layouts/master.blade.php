@@ -38,7 +38,7 @@
 
     @include('backs.layouts.partials.header')
 
-    @include('backs.layouts.partials.settingThemeUi')
+    @include('backs.layouts.partials.setting_theme_ui')
     <div class="app-main">
 
        @include('backs.layouts.partials.sidebar')
@@ -52,5 +52,6 @@
 {{--        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>--}}
     </div>
 </div>
-<script type="text/javascript" src="{{ asset('backs/admin/assets/scripts/main.js') }}"></script></body>
+<script type="text/javascript" src="{{ asset('backs/admin/assets/scripts/main.js') }}"></script>
+</body>
 </html>

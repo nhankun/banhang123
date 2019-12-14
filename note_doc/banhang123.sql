@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2019 lúc 12:57 PM
+-- Thời gian đã tạo: Th12 10, 2019 lúc 03:47 PM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -43,10 +43,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `icon`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Phone', NULL, 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(2, 'Laptop', NULL, 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(3, 'Iphone', NULL, 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(4, 'Ipad', NULL, 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL);
+(1, 'Phone', NULL, 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(2, 'Laptop', NULL, 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(3, 'Iphone', NULL, 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(4, 'Ipad', NULL, 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,6 +79,22 @@ CREATE TABLE `images` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `images`
+--
+
+INSERT INTO `images` (`id`, `product_id`, `link`, `title`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(43, 1, 'uploads/products/1/general/product15759010610.jpg', 'dsd sds123', '2019-12-09 07:17:41', '2019-12-09 07:17:41', NULL),
+(44, 1, 'uploads/products/1/general/product15759011280.jpg', 'dsd sds123', '2019-12-09 07:18:48', '2019-12-09 07:18:48', NULL),
+(45, 1, 'uploads/products/1/general/product15759767240.jpg', 'dsd sds123', '2019-12-10 04:18:44', '2019-12-10 04:18:44', NULL),
+(46, 1, 'uploads/products/1/general/product15759771370.jpg', 'dsd sds123', '2019-12-10 04:25:37', '2019-12-10 04:25:37', NULL),
+(47, 1, 'uploads/products/1/general/product15759771371.jpg', 'dsd sds123', '2019-12-10 04:25:37', '2019-12-10 04:25:37', NULL),
+(48, 1, 'uploads/products/1/general/product15759771372.jpg', 'dsd sds123', '2019-12-10 04:25:37', '2019-12-10 04:25:37', NULL),
+(49, 1, 'uploads/products/1/general/product15759833660.jpg', 'dsd sds123', '2019-12-10 06:09:26', '2019-12-10 06:09:26', NULL),
+(50, 1, 'uploads/products/1/general/product15759833661.jpg', 'dsd sds123', '2019-12-10 06:09:26', '2019-12-10 06:09:26', NULL),
+(51, 1, 'uploads/products/1/general/product15759848150.jpg', 'dsd sds123', '2019-12-10 06:33:35', '2019-12-10 06:33:35', NULL),
+(52, 1, 'uploads/products/1/general/product15759848210.jpg', 'dsd sds123', '2019-12-10 06:33:41', '2019-12-10 06:33:41', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -96,15 +112,15 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(64, '2014_10_12_000000_create_users_table', 1),
-(65, '2014_10_12_100000_create_password_resets_table', 1),
-(66, '2019_08_19_000000_create_failed_jobs_table', 1),
-(67, '2019_10_23_125732_create_categories_table', 1),
-(68, '2019_10_23_125813_create_providers_table', 1),
-(69, '2019_10_23_125938_create_property_defaults_table', 1),
-(70, '2019_10_23_130003_create_products_table', 1),
-(71, '2019_10_23_130013_create_images_table', 1),
-(72, '2019_10_23_130034_create_properties_table', 1);
+(118, '2014_10_12_000000_create_users_table', 1),
+(119, '2014_10_12_100000_create_password_resets_table', 1),
+(120, '2019_08_19_000000_create_failed_jobs_table', 1),
+(121, '2019_10_23_125732_create_categories_table', 1),
+(122, '2019_10_23_125813_create_providers_table', 1),
+(123, '2019_10_23_125938_create_property_defaults_table', 1),
+(124, '2019_10_23_130003_create_products_table', 1),
+(125, '2019_10_23_130013_create_images_table', 1),
+(126, '2019_10_23_130034_create_properties_table', 1);
 
 -- --------------------------------------------------------
 
@@ -129,13 +145,21 @@ CREATE TABLE `products` (
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `provider_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` double NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `provider_id`, `name`, `quantity`, `price`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 2, 'dsd sds123', 12123, 50000123, 'sdsdabc', 0, '2019-12-06 09:30:26', '2019-12-07 07:53:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -176,16 +200,16 @@ CREATE TABLE `property_defaults` (
 --
 
 INSERT INTO `property_defaults` (`id`, `category_id`, `name`, `value`, `sort`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Màn hình', NULL, 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(2, 1, 'Camera trước', NULL, 2, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(3, 1, 'Camera sau', NULL, 3, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(4, 1, 'Ram', NULL, 4, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(5, 1, 'Bộ nhớ trong', NULL, 5, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(6, 1, 'CPU', NULL, 6, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(7, 1, 'GPU', NULL, 7, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(8, 1, 'Dung lượng PIN', NULL, 8, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(9, 1, 'Hệ điều hành', NULL, 9, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(10, 1, 'Sim', NULL, 10, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL);
+(1, 1, 'Màn hình', NULL, 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(2, 1, 'Camera trước', NULL, 2, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(3, 1, 'Camera sau', NULL, 3, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(4, 1, 'Ram', NULL, 4, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(5, 1, 'Bộ nhớ trong', NULL, 5, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(6, 1, 'CPU', NULL, 6, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(7, 1, 'GPU', NULL, 7, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(8, 1, 'Dung lượng PIN', NULL, 8, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(9, 1, 'Hệ điều hành', NULL, 9, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(10, 1, 'Sim', NULL, 10, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -212,9 +236,9 @@ CREATE TABLE `providers` (
 --
 
 INSERT INTO `providers` (`id`, `name`, `image`, `address`, `email`, `tel`, `website`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Asus', 'uploads/defaults/providers/images/asusLogo.png', 'Đài Loan', 'asus@asus.com', '18006588', 'https://www.asus.com/vn/', 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(2, 'Dell', 'uploads/defaults/providers/images/dellLogo.png', 'Mỹ', 'dell@dell.com', '842838221366', 'http://www1.ap.dell.com/content/default.aspx?c=vn&l=en&s=&s=gen&~ck=cr', 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL),
-(3, 'HP', 'uploads/defaults/providers/images/hpLogo.png', 'Đài Loan', 'cskh@hp.com', '1800588868', 'https://www8.hp.com/vn/vi/products/laptops-tablets.html', 1, '2019-11-25 04:56:18', '2019-11-25 04:56:18', NULL);
+(1, 'Asus', 'uploads/defaults/providers/images/asusLogo.png', 'Đài Loan', 'asus@asus.com', '18006588', 'https://www.asus.com/vn/', 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(2, 'Dell', 'uploads/defaults/providers/images/dellLogo.png', 'Mỹ', 'dell@dell.com', '842838221366', 'http://www1.ap.dell.com/content/default.aspx?c=vn&l=en&s=&s=gen&~ck=cr', 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL),
+(3, 'HP', 'uploads/defaults/providers/images/hpLogo.png', 'Đài Loan', 'cskh@hp.com', '1800588868', 'https://www8.hp.com/vn/vi/products/laptops-tablets.html', 1, '2019-12-06 09:30:03', '2019-12-06 09:30:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -323,19 +347,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `properties`

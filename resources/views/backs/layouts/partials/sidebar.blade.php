@@ -54,6 +54,12 @@
                         Categories
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('products.index') }}">
+                        <i class="metismenu-icon pe-7s-display2"></i>
+                        Products
+                    </a>
+                </li>
 {{--                <li class="app-sidebar__heading">Widgets</li>--}}
 {{--                <li>--}}
 {{--                    <a href="dashboard-boxes.html">--}}

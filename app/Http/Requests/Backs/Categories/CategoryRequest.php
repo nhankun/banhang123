@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
         $id = isset($this->category) ? ','.$this->category : '';
         return [
             'name' => 'required|max:255|unique:categories,name'.$id,
-            'fileImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 

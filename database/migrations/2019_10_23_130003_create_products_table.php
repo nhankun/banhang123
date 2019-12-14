@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('provider_id');
             $table->string('name');
-            $table->integer('quantity');
-            $table->double('price');
+            $table->integer('quantity')->nullable();
+            $table->double('price')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
             $table->softDeletes();

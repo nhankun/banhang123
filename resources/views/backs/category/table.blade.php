@@ -32,7 +32,7 @@
                     <tr>
                         <th scope="row">{!! $category->id !!}</th>
                         <td>{!! $category->name !!}</td>
-                        <td><img src="{!! asset($category->icon) !!}" alt="{!! $category->name !!}"></td>
+                        <td><img src="{!! asset($category->icon) !!}" alt="{!! $category->name !!}" width="50"></td>
                         {{--                        <td>{!! $provider->website !!}</td>--}}
                         <td>
 
