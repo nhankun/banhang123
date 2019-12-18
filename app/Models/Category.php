@@ -23,11 +23,16 @@ class Category extends Model
         return $this->hasMany('App\Models\Product','category_id','id');
     }
 
-    public function propertyDefault()
+    public function propertyDefaults()
     {
         return $this->hasMany('App\Models\PropertyDefault','category_id','id');
     }
 
+    //scope
+    public function scopeActived()
+    {
+        return $this->where('status',true);
+    }
     //function
 //
 

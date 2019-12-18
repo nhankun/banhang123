@@ -26,11 +26,11 @@ class ProductRepository
 
     public function getAllCategory()
     {
-        return Category::where('status',1)->get(['id','name']);
+        return Category::actived()->get(['id','name']);
     }
 
     public function getAllProviders()
     {
-        return Provider::where('status',1)->get(['id','name']);
+        return Provider::actived()->get(['id','name']);
     }
 }

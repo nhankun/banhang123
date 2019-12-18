@@ -114,6 +114,7 @@ class ProviderController extends Controller
     public function search(Request $request)
     {
         $key_search = $request->only('search');
+        $providers = $this->repository->search($key_search);
         return view('backs.provider.index',compact('providers'));
     }
 

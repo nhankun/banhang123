@@ -90,7 +90,7 @@
 <hr class="line">
 
 <div class="position-relative form-row">
-    <a href="{!! route('products.index') !!}" class="mt-1 btn btn-light col-6">Back</a>
+    <a href="{!! route('managerProduct.index') !!}" class="mt-1 btn btn-light col-6">Back</a>
     <button type="submit" class="mt-1 btn btn-primary col-6">Continue</button>
 </div>
 

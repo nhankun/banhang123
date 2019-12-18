@@ -36,26 +36,26 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="index.html" class="mm-active">
+                    <a href="/" class="{{ Request::path() === '/' ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Manager</li>
                 <li>
-                    <a href="{{ route('providers.index') }}">
+                    <a href="{{ route('providers.index') }}" class="{{ Request::url() ===  route('providers.index') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Providers
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('categories.index') }}">
+                    <a href="{{ route('categories.index') }}" class="{{ Request::url() ===  route('categories.index') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Categories
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('products.index') }}">
+                    <a href="{{ route('managerProduct.index') }}" class="{{ Request::url() ===  route('managerProduct.index') ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Products
                     </a>

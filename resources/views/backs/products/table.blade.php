@@ -3,7 +3,7 @@
         {{--                    <h5 class="card-title">Table responsive</h5>--}}
         <div class="btn-context-head row">
             <div class="create-context col-6">
-                <a href="{{ route('providers.create') }}" class="mb-2 mr-2 btn btn-primary create-btn"><span><i class="fa fa-plus-circle"></i>&nbsp;</span> Create provider</a>
+                <a href="{{ route('products.create') }}" class="mb-2 mr-2 btn btn-primary create-btn"><span><i class="fa fa-plus-circle"></i>&nbsp;</span> Create product</a>
             </div>
             <div class="search-context col-6">
                 <form class="form-inline justify-content-end" action="{{ route('providers.search') }}" method="get">
@@ -21,44 +21,42 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Image</th>
-                    <th>address</th>
-                    <th>email</th>
-                    <th>tel</th>
-{{--                    <th>website</th>--}}
+                    <th>Quantity</th>
+                    <th>Price</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($providers as $provider)
+                @foreach($products as $product)
                     <tr>
-                        <th scope="row">{!! $provider->id !!}</th>
-                        <td>{!! $provider->name !!}</td>
-                        <td><img src="{!! asset($provider->image) !!}" alt="{!! $provider->name !!}"
-                                 width="60"></td>
-                        <td>{!! $provider->address !!}</td>
-                        <td>{!! $provider->email !!}</td>
-                        <td>{!! $provider->tel !!}</td>
-{{--                        <td>{!! $provider->website !!}</td>--}}
+                        <th scope="row">{!! $product->id !!}</th>
+                        <td>{!! $product->name !!}</td>
                         <td>
-                            @if($provider->status == true)
+                            <img src="{!! isset($product->images[0]) ? asset($product->images[0]->link) : '' !!}" alt="{!! $product->name !!}"
+                                 width="60">
+                        </td>
+                        <td>{!! $product->quantity !!}</td>
+                        <td>{!! $product->price !!}</td>
+                        <td>
+                            @if($product->status == true)
                                 <span class="checkbox-active">
-                                                <button class="mb-2 mr-2 btn btn-success" onclick="cancel(this,{{ $provider->id }})">
+                                                <button class="mb-2 mr-2 btn btn-success" onclick="cancel(this,{{ $product->id }})">
                                                     <i class="fas fa-check-circle"></i>
                                                 </button>
                                             </span>
                             @else
                                 <span class="checkbox-active">
-                                                <button class="mb-2 mr-2 btn btn-danger" onclick="approved(this,{{ $provider->id }})">
+                                                <button class="mb-2 mr-2 btn btn-danger" onclick="approved(this,{{ $product->id }})">
                                                     <i class="fa fa-ban"></i>
                                                 </button>
                                             </span>
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('providers.edit',$provider->id) }}" class="mb-2 mr-2 btn btn-info"><i class="fas fa-edit"></i>
+                            <a href="{{ route('products.edit',$product->id) }}" class="mb-2 mr-2 btn btn-info"><i class="fas fa-edit"></i>
                             </a>
-                            <a href="javascript:void(0);" class="mb-2 mr-2 btn btn-danger" onclick="deleteProvider(this,{{ $provider->id }});"><i class="far fa-trash-alt"></i>
+                            <a href="javascript:void(0);" class="mb-2 mr-2 btn btn-danger" onclick="deleteProvider(this,{{ $product->id }});"><i class="far fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>
@@ -67,7 +65,7 @@
             </table>
         </div>
         <div class="pagination-context">
-            {!! $providers->links() !!}
+            {!! $products->links() !!}
         </div>
     </div>
 </div>
@@ -89,7 +87,7 @@
                 if(id != null)
                 {
                     $.ajax({
-                        url: "{!! route('providers.approved') !!}",
+                        url: "{!! route('managerProduct.approved') !!}",
                         method: "POST",
                         data: {'id':id},
                         success: function(rs) {
@@ -132,7 +130,7 @@
                 if(id != null)
                 {
                     $.ajax({
-                        url: "{!! route('providers.cancel') !!}",
+                        url: "{!! route('managerProduct.cancel') !!}",
                         method: "POST",
                         data: {'id':id},
                         success: function(rs) {

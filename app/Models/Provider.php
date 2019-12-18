@@ -24,7 +24,12 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Product','provider_id','id');
     }
-
+//  scope
+    //scope
+    public function scopeActived()
+    {
+        return $this->where('status',true);
+    }
 
     //function
 //

@@ -33,6 +33,23 @@ class Product extends Model
         return $this->hasOne('App\Models\Property','product_id','id');
     }
 
+    public function active()
+    {
+        $this->status = true;
+        return $this->save();
+    }
+    public function cancel()
+    {
+        $this->status = false;
+        return $this->save();
+    }
+
+    //scope
+    public function scopeActived()
+    {
+        return $this->where('status',true);
+    }
+
 //    public function orderDetails()
 //    {
 //        return $this->hasMany('App\Model\OrderDetail','product_id','id');

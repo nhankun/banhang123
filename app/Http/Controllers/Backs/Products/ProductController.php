@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backs\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backs\Products\ProductRequest;
 use App\Repositories\Back\Products\ProductRepository;
+use App\Services\GetSession;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,7 +23,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+//        $user = Auth::user();
+//        if($user->role == 'provider'){
+            if(GetSession::getSessionProduct() != null)
+            {
+                return $this->edit(GetSession::getSessionProduct());
+            }
+//        }elseif($user->role == 'user') {
+//            $food_places = $this->repository->getFoodPlace($user->id);
+//            if(isset($food_places))
+//            {
+//                return redirect(route('food_places.edit',$food_places));
+//            }
+//        }
+        return $this->create();
     }
 
     /**
@@ -32,6 +46,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        GetSession::putSessionProduct(null);
         $categories = $this->repository->getAllCategory();
         $providers = $this->repository->getAllProviders();
         return  view('backs.products.basic_infos.create',compact(['categories','providers']));
@@ -46,7 +61,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->only(['category_id','provider_id','name','quantity','price','description']);
-        $this->repository->createProduct($data);
+        $result = $this->repository->createProduct($data);
+        GetSession::putSessionProduct($result->id);
+        return redirect()->route('images.index');
     }
 
     /**
@@ -71,6 +88,7 @@ class ProductController extends Controller
         $categories = $this->repository->getAllCategory();
         $providers = $this->repository->getAllProviders();
         $product = $this->repository->getProductById($id);
+        GetSession::putSessionProduct($product->id);
         return  view('backs.products.basic_infos.edit',compact(['categories','providers','product']));
     }
 
@@ -85,7 +103,7 @@ class ProductController extends Controller
     {
         $data = $request->only(['category_id','provider_id','name','quantity','price','description']);
         $this->repository->updateProduct($id,$data);
-        return back();
+        return redirect()->route('images.index');
     }
 
     /**

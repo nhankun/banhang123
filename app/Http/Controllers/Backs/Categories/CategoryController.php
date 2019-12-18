@@ -25,6 +25,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->repository->getAll();
+        if ($categories->count() <=0 ){
+            return $this->create();
+        }
         return view('backs.category.index',compact('categories'));
     }
 

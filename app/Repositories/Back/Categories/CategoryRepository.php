@@ -28,6 +28,7 @@ class CategoryRepository
             'status' => false
         ]);
         self::updateImage($data, $category);
+        dd($data['Property']);
         isset($data['Property']) ? $this->createOrUpdateProperty($data['Property'], $category) : '';
         return $category;
     }

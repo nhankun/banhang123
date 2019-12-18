@@ -80,7 +80,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('backs.provider.table')
+            @include('backs.products.table')
         </div>
     </div>
 

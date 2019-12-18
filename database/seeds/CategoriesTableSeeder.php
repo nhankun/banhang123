@@ -17,6 +17,7 @@ class CategoriesTableSeeder extends Seeder
             [
                 'id'=>1,
                 'name'=>'Phone',
+                'icon' => 'images/icon_phone.png',
                 'status'=>true,
                 'created_at'=>$currentTime,
                 'updated_at'=>$currentTime
@@ -24,6 +25,7 @@ class CategoriesTableSeeder extends Seeder
             [
                 'id'=>2,
                 'name'=>'Laptop',
+                'icon' => 'images/laptop.png',
                 'status'=>true,
                 'created_at'=>$currentTime,
                 'updated_at'=>$currentTime
@@ -31,6 +33,7 @@ class CategoriesTableSeeder extends Seeder
             [
                 'id'=>3,
                 'name'=>'Iphone',
+                'icon' => 'images/icon_phone.png',
                 'status'=>true,
                 'created_at'=>$currentTime,
                 'updated_at'=>$currentTime
@@ -38,6 +41,7 @@ class CategoriesTableSeeder extends Seeder
             [
                 'id'=>4,
                 'name'=>'Ipad',
+                'icon' => 'images/ipad.png',
                 'status'=>true,
                 'created_at'=>$currentTime,
                 'updated_at'=>$currentTime

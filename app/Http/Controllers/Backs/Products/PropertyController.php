@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Backs\Products;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Back\Products\ImageRepository;
+use App\Repositories\Back\Products\PropertyRepository;
 use App\Services\GetSession;
 use Illuminate\Http\Request;
 
-class ImageController extends Controller
+class PropertyController extends Controller
 {
     private $repository;
 
-    public function __construct(ImageRepository $repository)
+    public function __construct(PropertyRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -24,9 +24,9 @@ class ImageController extends Controller
     public function index()
     {
         $product_id = GetSession::getSessionProduct();
-        $images = $this->repository->getImageByProductId($product_id);
-        if ($images){
-            return $this->edit($product_id);
+        $property = $this->repository->getPropertyByProductId($product_id);
+        if ($property){
+            return $this->editByProduct($product_id);
         }else{
             return $this->create();
         }
@@ -39,7 +39,9 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('backs.products.images.create');
+        $product_id = GetSession::getSessionProduct();
+        $propertyDefaults = $this->repository->getPropertyDefaultByCategory(1);
+        return view('backs.products.properties.create',compact('propertyDefaults'));
     }
 
     /**
@@ -50,11 +52,9 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->fileImages);
         $product_id = GetSession::getSessionProduct();
-        $product = $this->repository->getProductById($product_id);
-        $image = $this->repository->createImages($request->fileImages,$product);
-        return redirect()->route('properties.index');
+        $properties = $this->repository->createOrUpdateProperties($request->Property,$product_id);
+        return redirect()->route('managerProduct.index');
     }
 
     /**
@@ -74,10 +74,17 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id)
+    public function edit($id)
     {
-        $images = $this->repository->getImageByProductId($product_id);
-        return view('backs.products.images.edit',compact('images'));
+
+    }
+
+    public function editByProduct($product_id)
+    {
+        $properties = $this->repository->getAllPropertyByProductId($product_id);
+        if ($properties != false){
+            return view('backs.products.properties.edit',compact('properties'));
+        }
     }
 
     /**
@@ -89,7 +96,13 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+    }
+
+    public function updateByProduct(Request $request,$product_id)
+    {
+        $properties = $this->repository->createOrUpdateProperties($request->Property,$product_id);
+        return redirect()->route('managerProduct.index');
     }
 
     /**
@@ -100,14 +113,11 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 
-    public function delete(Request $request,$id)
+    public function delete(Request $request)
     {
-        if ($request->ajax()){
-            $image = $this->repository->delete($request->id);
-            return 'ok';
-        }
+        return $this->repository->deleteProperty($request->id);
     }
 }

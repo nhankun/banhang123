@@ -8,7 +8,7 @@ class GetSession {
 
     public static function putSessionProduct($id)
     {
-        Session::pull('product_id',$id);
+        Session::put('product_id',$id);
     }
 
     public static function getSessionProduct()
