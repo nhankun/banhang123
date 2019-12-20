@@ -1,16 +1,10 @@
 @extends('backs.layouts.master')
+
+@section('css')
+    <link rel="stylesheet" href="{!! asset('backs/manager/css/category.css') !!}">
+@endsection
+
 @section('main_content')
-
-    <style>
-        .pagination-context{
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 5%;
-        }
-        .create-btn{
-
-        }
-    </style>
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -30,55 +24,59 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('backs.managers.categories.table')
+            <div class="main-card mb-3 card">
+                <div class="card-body container-fluid">
+                    {{--                    <h5 class="card-title">Table responsive</h5>--}}
+                    <div class="btn-context-head row">
+                        <div class="create-context col-6">
+                            <a href="{{ route('categories.create') }}" target="_blank"
+                               class="mb-2 mr-2 btn btn-primary create-btn"><span><i
+                                        class="fa fa-plus-circle"></i>&nbsp;</span> Create category</a>
+                        </div>
+                        <div class="search-context col-6">
+                            <form class="form-inline justify-content-end"
+                                  action="{{ route('managerCategories.search') }}" method="get">
+                                <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                    <input name="search" id="search" placeholder="Search for name..." type="text"
+                                           value="{!! old('search') !!}" class="form-control">
+                                </div>
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="DataTableProvider">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>icon</th>
+                                <th>Active</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @include('backs.managers.categories.table')
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-context">
+                        {!! isset($links) ? $links : '' !!}
+                    </div>
+                </div>
+            </div>
+
+            <script !src="">
+
+            </script>
+
         </div>
     </div>
+@endsection
 
+@section('script')
     <script !src="">
-        $(window).bind("load",function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        });
-
-        function deleteCategory(e,id){
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value) {
-                    if(id != null)
-                    {
-                        $.ajax({
-                            url: "{!! route('managerCategories.delete') !!}",
-                            method: "POST",
-                            data: {'id':id},
-                            success: function(rs) {
-                                if(rs.result == true) {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
-                                        'success'
-                                    )
-                                }else{
-                                    console.log(rs.result);
-                                }
-                            },
-                            error: function (err) {
-                                console.log(err);
-                            }
-                        });
-                        $(e).parent().parent().remove();
-                    }
-                }
-            });
-        }
+        var url_delete = "{!! route('managerCategories.delete') !!}";
     </script>
+    <script src="{!! asset('backs/manager/js/category.js') !!}"></script>
 @endsection

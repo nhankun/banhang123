@@ -32,6 +32,7 @@
     <script src="{{asset('jquery/dist/jquery.validate.js')}}" type="text/javascript"></script>
 
     <link rel="stylesheet" href="{{ asset('backs/admin/assets/sweetalert2/dist/sweetalert2.min.css') }}">
+    @yield('css')
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -45,7 +46,9 @@
 
         <div class="app-main__outer">
             <div class="app-main__inner">
+
                 @yield('main_content')
+
             </div>
             @include('backs.layouts.partials.footer')
         </div>
@@ -53,5 +56,6 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ asset('backs/admin/assets/scripts/main.js') }}"></script>
+@yield('script')
 </body>
 </html>

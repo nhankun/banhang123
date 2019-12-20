@@ -1,0 +1,19 @@
+.invalid-feedback{
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.line{
+    border-top: 1px solid #3f6ad8;
+}
+.title{
+    color: #3f6ad8;
+}
+#imagePreview{
+    margin: 0 !important;
+}
+.error{
+    color: red;
+}
+.invalid-feedback{
+    display: block !important;
+}

@@ -1,0 +1,9 @@
+.pagination-context {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+
+.create-btn {
+
+}

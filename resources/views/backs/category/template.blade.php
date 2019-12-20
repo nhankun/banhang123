@@ -1,24 +1,3 @@
-<style>
-    .invalid-feedback{
-        font-size: 15px;
-        font-family: sans-serif;
-    }
-    .line{
-        border-top: 3px solid #3f6ad8;
-    }
-    .title{
-        color: #3f6ad8;
-    }
-    #imagePreview{
-        margin: 0 !important;
-    }
-    .error{
-        color: red;
-    }
-    .invalid-feedback{
-        display: block !important;
-    }
-</style>
 {{--@foreach ($errors->all() as $error)--}}
 {{--    @if($errors->get('fileImage'))--}}
 {{--    <li>{{ $error }}</li>--}}
@@ -100,5 +79,4 @@
     <button type="submit" class="mt-1 btn btn-primary col-6">Save</button>
     <a href="{!! route('categories.index') !!}" class="mt-1 btn btn-light col-6">Back</a>
 </div>
-<script src="{!! asset('backs/admin/js/category.js') !!}"></script>
 
