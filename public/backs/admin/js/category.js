@@ -12,16 +12,19 @@ function onChangeCssValid(e, replaceVal) {
     return true;
 }
 
-var c = 0;
-
 function addNewProperty() {
+    var c = $('.abc:last').attr('id');
+    if (typeof c === 'undefined')
+    {
+        c = 0;
+    }
     c++;
-    var new_property = "<div class=\"row abc\" id=new_" + c + ">\n" +
+    var new_property = "<div class=\"row abc\" id=" + c + ">\n" +
         "        <div class=\"col-md-4\">\n" +
-        "            <input name=\"Property[new_" + c + "][property_name]\" id=\"nameProperty_" + c + "\" placeholder=\"name\" type=\"text\" onchange=\"onChangeCssValid(this,'form-control');\" class=\"form-control nameclassrule\">\n" +
+        "            <input name=\"Property[" + c + "][property_name]\" id=\"nameProperty_" + c + "\" placeholder=\"name\" type=\"text\" onchange=\"onChangeCssValid(this,'form-control');\" class=\"form-control nameclassrule\">\n" +
         "        </div>\n" +
         "        <div class=\"col-md-4\">\n" +
-        "            <input name=\"Property[new_" + c + "][property_value]\" id=\"value_" + c + "\" placeholder=\"value\" type=\"text\" onchange=\"onChangeCssValid(this,'form-control');\" class=\"form-control valueclassrule\">\n" +
+        "            <input name=\"Property[" + c + "][property_value]\" id=\"value_" + c + "\" placeholder=\"value\" type=\"text\" onchange=\"onChangeCssValid(this,'form-control');\" class=\"form-control valueclassrule\">\n" +
         "          \n" +
         "        </div>\n" +
         "        <div class=\"col-md-4\">\n" +
@@ -90,35 +93,15 @@ $('#category-form').submit(function () {
 function deleteProperty(e, id) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.value) {
             if (id != null) {
-                $.ajax({
-                    url: url_delete_property,
-                    method: "POST",
-                    data: {'id': id},
-                    success: function (rs) {
-                        if (rs.result == true) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                        } else {
-                            console.log(rs.result);
-                        }
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                });
-                $(e).parents('.abc').remove();
+                $(e).parents('#'+id).remove();
             } else {
                 $(e).parents('.abc').remove();
             }

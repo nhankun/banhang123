@@ -230,4 +230,10 @@ return [
 
     ],
 
+    'nbrPages' => [
+        'back' => [
+            'categories' => 4,
+        ]
+    ]
+
 ];

@@ -77,28 +77,18 @@
             </div>
         </div>
     </div>
-@if(isset($category))
-    @foreach($category->propertyDefault as $property)
-        <div class="row abc" id="{!! $property->id !!}">
+@if(isset($propertyDefaults))
+    @foreach($propertyDefaults as $key => $property)
+        <div class="row abc" id="{!! $key !!}">
             <div class="col-md-4">
-                <input name="Property[{!! $property->id !!}][property_name]" id="nameProperty_{!! $property->id !!}" placeholder="name" value="{!! isset($property) ? $property->name : old('nameProperty')!!}" type="text" onchange="onChangeCssValid(this,'form-control');" class="form-control nameclassrule @error('nameProperty') is-invalid @enderror">
-                @error('nameProperty')
-                <div class="invalid-feedback">
-                    {{ $message }}.
-                </div>
-                @enderror
+                <input name="Property[{!! $key !!}][property_name]" id="nameProperty_{!! $key !!}" placeholder="name" value="{!! isset($property) ? $property->property_name : old('nameProperty')!!}" type="text" onchange="onChangeCssValid(this,'form-control');" class="form-control nameclassrule">
             </div>
             <div class="col-md-4">
-                <input name="Property[{!! $property->id !!}][property_value]" id="value_{!! $property->id !!}" placeholder="value" value="{!! isset($property) ? $property->value : old('value')!!}" type="text" onchange="onChangeCssValid(this,'form-control');" class="form-control valueclassrule @error('value') is-invalid @enderror">
-                @error('value')
-                <div class="invalid-feedback">
-                    {{ $message }}.
-                </div>
-                @enderror
+                <input name="Property[{!! $key !!}][property_value]" id="value_{!! $key !!}" placeholder="value" value="{!! isset($property) ? $property->property_value : old('value')!!}" type="text" onchange="onChangeCssValid(this,'form-control');" class="form-control valueclassrule">
             </div>
             <div class="col-md-4">
                 <div style="width: 100%;height:100%;vertical-align: middle">
-                    <span onclick="deleteProperty(this,{{$property->id}});"><p class="btn btn-danger"><i class="fas fa-trash"></i></p></span>
+                    <span onclick="deleteProperty(this,{{$key}});"><p class="btn btn-danger"><i class="fas fa-trash"></i></p></span>
                 </div>
             </div>
         </div>
@@ -110,8 +100,5 @@
     <button type="submit" class="mt-1 btn btn-primary col-6">Save</button>
     <a href="{!! route('categories.index') !!}" class="mt-1 btn btn-light col-6">Back</a>
 </div>
-<script !src="">
-    var url_delete_property = "{!! route('categories.deletePropertyDefault') !!}";
-</script>
 <script src="{!! asset('backs/admin/js/category.js') !!}"></script>
 

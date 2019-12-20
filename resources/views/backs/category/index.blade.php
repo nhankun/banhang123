@@ -107,7 +107,7 @@
                     if(id != null)
                     {
                         $.ajax({
-                            url: "{!! route('categories.delete') !!}",
+                            url: "",
                             method: "POST",
                             data: {'id':id},
                             success: function(rs) {

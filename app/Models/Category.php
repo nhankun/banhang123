@@ -11,7 +11,7 @@ class Category extends Model
     use SoftDeletes,Filterable;
 
     protected $fillable = [
-        'name','icon' ,'status'
+        'name','icon' ,'property_defaults' ,'status'
     ];
 
     protected $filterable = [
@@ -23,9 +23,17 @@ class Category extends Model
         return $this->hasMany('App\Models\Product','category_id','id');
     }
 
-    public function propertyDefaults()
+    //function
+    public function active()
     {
-        return $this->hasMany('App\Models\PropertyDefault','category_id','id');
+        $this->status = true;
+        return $this->save();
+    }
+
+    public function cancel()
+    {
+        $this->status = false;
+        return $this->save();
     }
 
     //scope

@@ -3,11 +3,11 @@
         {{--                    <h5 class="card-title">Table responsive</h5>--}}
         <div class="btn-context-head row">
             <div class="create-context col-6">
-                <a href="{{ route('categories.create') }}" class="mb-2 mr-2 btn btn-primary create-btn"><span><i
+                <a href="{{ route('categories.create') }}" target="_blank" class="mb-2 mr-2 btn btn-primary create-btn"><span><i
                             class="fa fa-plus-circle"></i>&nbsp;</span> Create category</a>
             </div>
             <div class="search-context col-6">
-                <form class="form-inline justify-content-end" action="{{ route('categories.search') }}" method="get">
+                <form class="form-inline justify-content-end" action="{{ route('managerCategories.search') }}" method="get">
                     <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
                         <input name="search" id="search" placeholder="Search for name..." type="text"
                                value="{!! old('search') !!}" class="form-control">
@@ -49,7 +49,7 @@
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('categories.edit',$category->id) }}" class="mb-2 mr-2 btn btn-info"><i
+                            <a href="{{ route('categories.edit',$category->id) }}" target="_blank" class="mb-2 mr-2 btn btn-info"><i
                                     class="fas fa-edit"></i>
                             </a>
                             <a href="javascript:void(0);" class="mb-2 mr-2 btn btn-danger"
@@ -62,7 +62,7 @@
             </table>
         </div>
         <div class="pagination-context">
-            {!! $categories->links() !!}
+            {!! isset($links) ? $links : '' !!}
         </div>
     </div>
 </div>

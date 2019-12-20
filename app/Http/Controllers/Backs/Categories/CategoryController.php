@@ -28,7 +28,7 @@ class CategoryController extends Controller
         if ($categories->count() <=0 ){
             return $this->create();
         }
-        return view('backs.category.index',compact('categories'));
+        return redirect()->route('managerCategories.index');
     }
 
     /**
@@ -51,8 +51,8 @@ class CategoryController extends Controller
     {
         $data[] = [];
         $data = $request->all();
-        $this->repository->createCategory($data);
-        return redirect()->route('categories.index');
+        $category = $this->repository->createCategory($data);
+        return redirect()->route('categories.edit',$category->id);
     }
 
     /**
@@ -74,8 +74,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::with('propertyDefault')->find($id);
-        return view('backs.category.edit',compact('category'));
+        $category = Category::find($id);
+        $propertyDefaults = json_decode($category->property_defaults);
+        return view('backs.category.edit',compact(['category','propertyDefaults']));
     }
 
     /**
@@ -103,78 +104,12 @@ class CategoryController extends Controller
     {
         //
     }
-    /**
-     * Search category by key word.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $keySearch = $request->only('search');
-        $categories = $this->repository->search($keySearch);
-        return view('backs.category.index',compact('categories'));
-    }
-    /**
-     * Remove the specified resource from storage by ajax.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function delete(Request $request)
-    {
-        $result = $this->repository->delete($request->id);
-        if ($request->ajax())
-        {
-            return response()->json(['result'=>$result],200);
-        }
-        return redirect()->route('categories.index');
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function deletePropertyDefault(Request $request)
-    {
-        $result = $this->repository->deletePropertyDefault($request->id);
-        if ($request->ajax())
-        {
-            return response()->json(['result'=>$result],200);
-        }
-        return redirect()->route('categories.index');
-    }
-    /**
-     * Approved the specified resource from storage.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function approved(Request $request)
-    {
-        $category_id = $request->id;
-        $result = $this->repository->approved($category_id);
-        if ($request->ajax())
-        {
-            return response()->json(['result'=>$result],200);
-        }
-        return redirect()->route('categories.index');
-    }
-    /**
-     * Cancel the specified resource from storage.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function cancel(Request $request)
-    {
-        $category_id = $request->id;
-        $result = $this->repository->cancel($category_id);
-        if ($request->ajax())
-        {
-            return response()->json(['result'=>$result],200);
-        }
-        return redirect()->route('categories.index');
-    }
+
+//    public function search(Request $request)
+//    {
+//        $keySearch = $request->only('search');
+//        $categories = $this->repository->search($keySearch);
+//        return view('backs.category.index',compact('categories'));
+//    }
+
 }
