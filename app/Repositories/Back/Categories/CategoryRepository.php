@@ -25,11 +25,10 @@ class CategoryRepository
     {
         $category = Category::create([
             'name' => $data['name'],
+            'property_defaults' => isset($data['Property']) ? json_encode($data['Property']) : null,
             'status' => false
         ]);
         self::updateImage($data, $category);
-        dd($data['Property']);
-        isset($data['Property']) ? $this->createOrUpdateProperty($data['Property'], $category) : '';
         return $category;
     }
 
@@ -38,33 +37,11 @@ class CategoryRepository
         $category = self::getCategoryById($data['category_id']);
         $category->update([
             'name' => $data['name'],
+            'property_defaults' => isset($data['Property']) ? json_encode($data['Property']) : null,
             'status' => false
         ]);
         self::updateImage($data, $category);
-        isset($data['Property']) ? $this->createOrUpdateProperty($data['Property'], $category) : '';
         return $category;
-    }
-
-    public function createOrUpdateProperty($property, $category)
-    {
-        foreach ($property as $key => $value) {
-            if (strpos($key, 'new') !== false) {
-                PropertyDefault::create([
-                    'category_id' => $category->id,
-                    'name' => $value['property_name'],
-                    'value' => $value['property_value'],
-                    'sort' => 1,
-                ]);
-            } else {
-                $property = PropertyDefault::find($key);
-                $property->update([
-                    'category_id' => $category->id,
-                    'name' => $value['property_name'],
-                    'value' => $value['property_value'],
-                    'sort' => 1,
-                ]);
-            }
-        }
     }
 
     public function getCategoryById($id)
@@ -85,47 +62,14 @@ class CategoryRepository
 
     }
 
-    public function delete($category_id)
-    {
-        $category = Category::findOrFail($category_id);
-        $propertyDefaults = PropertyDefault::where('category_id', $category->id)->get('id');
-        self::deletePropertiesDefaults($propertyDefaults->toArray());
-        return $category->delete();
-    }
-
-    public function deletePropertiesDefaults($arr_id)
-    {
-        return PropertyDefault::destroy($arr_id);
-    }
-
-    public function deletePropertyDefault($id)
-    {
-        $propertyDefault = PropertyDefault::findOrFail($id);
-        return $propertyDefault->delete();
-    }
-
-    public function approved($category_id)
-    {
-        $category = Category::findOrFail($category_id);
-        $category->status = true;
-        return $category->save();
-    }
-
-    public function cancel($category_id)
-    {
-        $category = Category::findOrFail($category_id);
-        $category->status = false;
-        return $category->save();
-    }
-
-    public function search($keySearch)
-    {
-        if (!is_null($keySearch)) {
-            $param = ["id" => $keySearch['search'], "name" => $keySearch['search']];
-            return Category::filter($param)->paginate(4);
-        }
-        return Category::paginate(4);
-    }
+//    public function search($keySearch)
+//    {
+//        if (!is_null($keySearch)) {
+//            $param = ["id" => $keySearch['search'], "name" => $keySearch['search']];
+//            return Category::filter($param)->paginate(4);
+//        }
+//        return Category::paginate(4);
+//    }
 
 
 //    public function upload($category_id, $image)
