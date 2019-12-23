@@ -17,10 +17,10 @@ class CreateProvidersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('image')->nullable();
-            $table->string('address');
-            $table->string('email');
-            $table->string('tel');
-            $table->string('website');
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('website')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
             $table->softDeletes();

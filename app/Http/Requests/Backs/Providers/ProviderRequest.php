@@ -26,11 +26,11 @@ class ProviderRequest extends FormRequest
         $id = isset($this->provider) ? ','.$this->provider : '';
         return [
             'name' => 'required|max:191|unique:providers,name'.$id,
-            'fileImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'address' => 'nullable|max:191',
-            'email' => 'required|regex:/^.+@.+$/i|max:191',
-            'tel' => 'required|max:20',
-            'website' => 'required|max:191',
+            'email' => 'nullable|regex:/^.+@.+$/i|max:191',
+            'tel' => 'nullable|max:20',
+            'website' => 'nullable|max:191',
         ];
     }
 

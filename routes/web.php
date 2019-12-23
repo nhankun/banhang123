@@ -22,8 +22,6 @@ Route::prefix('back/general')->group(function () {
         Route::prefix('providers')->group(function () {
             Route::post('/delete', 'ProviderController@delete')->name('providers.delete');
             Route::get('/search', 'ProviderController@search')->name('providers.search');
-            Route::post('/approved', 'ProviderController@approved')->name('providers.approved');
-            Route::post('/cancel', 'ProviderController@cancel')->name('providers.cancel');
         });
         Route::resource('providers', 'ProviderController')->only(['index', 'store', 'create', 'edit', 'update']);
     });
@@ -77,6 +75,16 @@ Route::prefix('manager')->group(function () {
             });
         });
 
+        Route::namespace('Providers')->group(function () {
+            Route::prefix('providers')->group(function () {
+
+                Route::get('/', 'ManagerProviderController@index')->name('managerProviders.index');
+                Route::post('/delete', 'ManagerProviderController@delete')->name('managerProviders.delete');
+                Route::get('/search', 'ManagerProviderController@search')->name('managerProviders.search');
+
+            });
+        });
+
     });
 
 });
@@ -91,6 +99,15 @@ Route::prefix('admin')->group(function () {
                 Route::delete('/destroy/{id}', 'AdminCategoryController@destroy')->name('AdminCategory.destroy');
                 Route::post('/approved', 'AdminCategoryController@approved')->name('AdminCategory.approved');
                 Route::post('/cancel', 'AdminCategoryController@cancel')->name('AdminCategory.cancel');
+            });
+        });
+
+        Route::namespace('Providers')->group(function () {
+            Route::prefix('providers')->group(function () {
+                Route::get('/', 'AdminProviderController@index')->name('AdminProvider.index');
+                Route::delete('/destroy/{id}', 'AdminProviderController@destroy')->name('AdminProvider.destroy');
+                Route::post('/approved', 'AdminProviderController@approved')->name('AdminProvider.approved');
+                Route::post('/cancel', 'AdminProviderController@cancel')->name('AdminProvider.cancel');
             });
         });
 

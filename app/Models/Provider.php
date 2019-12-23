@@ -24,15 +24,28 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Product','provider_id','id');
     }
-//  scope
+    //function
+    public function active()
+    {
+        $this->status = true;
+        return $this->save();
+    }
+
+    public function cancel()
+    {
+        $this->status = false;
+        return $this->save();
+    }
     //scope
     public function scopeActived()
     {
         return $this->where('status',true);
     }
 
-    //function
-//
+    public function scopeActive($query)
+    {
+        return $query->orwhere('status', true);
+    }
 
     public function filterName($query, $value)
     {
@@ -57,9 +70,4 @@ class Provider extends Model
 //    {
 //        return $query->where('name', 'LIKE', '%' . $value . '%');
 //    }
-
-    public function scopeActive($query)
-    {
-        return $query->orwhere('status', true);
-    }
 }

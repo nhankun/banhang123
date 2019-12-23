@@ -2,25 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87248adb-f0e6-45cb-a5f5-1323dc332db9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/backs/admin/css/category.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/backs/manager/css/category.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/backs/manager/js/category.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/category.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Back/Admins/Providers/AdminProviderRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/Back/Managers/Providers/ManagerProviderRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backs/admin/css/provider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backs/admin/js/provider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backs/manager/css/provider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backs/manager/js/provider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backs/admins/providers/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backs/admins/providers/tables.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backs/managers/providers/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backs/managers/providers/table.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backs/admin/js/admins/category.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backs/admin/js/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/backs/admin/js/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/admins/categories/content.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/admins/categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/admins/categories/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/admins/categories/tables.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/admins/categories/tables.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/category/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/category/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/category/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/category/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/category/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/category/table.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/category/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/category/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/managers/categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/managers/categories/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backs/managers/categories/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/managers/categories/table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Backs/Providers/ProviderRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Backs/Providers/ProviderRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/parameters.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/parameters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_23_125813_create_providers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_23_125813_create_providers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/defaults/providers/images/asusLogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backs/provider/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backs/provider/table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -257,6 +257,8 @@
       <workItem from="1576728310957" duration="14911000" />
       <workItem from="1576754505212" duration="7858000" />
       <workItem from="1576818466218" duration="3228000" />
+      <workItem from="1576931153429" duration="1972000" />
+      <workItem from="1577110281169" duration="4094000" />
     </task>
     <servers />
   </component>

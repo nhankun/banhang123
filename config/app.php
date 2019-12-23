@@ -233,6 +233,7 @@ return [
     'nbrPages' => [
         'back' => [
             'categories' => 4,
+            'providers' => 4,
         ]
     ]
 
